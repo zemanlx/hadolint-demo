@@ -1,114 +1,138 @@
-# 高橋流簡報
-- Takahashi Method
-# 發明者
-- Inventor
-# 日本 Ruby 開發者\\**高橋**征義
-- Japanese Ruby developer\\**Takahashi**  Masayoshi
-# 簡單來說
-- In short,
-# 高橋流簡報就是
-- Takahashi Method is a slide with
-# 超大字體
-- Ultimate large font size
-# 搭配\\精簡文字
-- With simplified words
-# 所構成的簡報
-- That is!
-# 講者才是一切
-- Speaker is everything
-# 觀眾\\不會分心
-- User won't be distracted
-# 有些人說\\這是偷懶
-- Somebody says "You're too lazy!"
-# 然而我認為\\高橋流簡報
-- But I think **takahashi method** is
-# 簡單
-- Easy to make
-# 高效
-- Efficient to write
-# 震撼
-- Shock to audiences
-# 好東西
-- Good!
-# 寶傑我跟你說...
-- LBJ, do you know...
-# 高橋流簡報...
-- Takahashi Method...
-# 讚!
-- Awesome!
-# 地球只有一個
-- We have only one earth
-# 可是\\高橋流簡報
-- But with Takahashi Method
-# 卻可以一小時\\寫出好幾個
-- We can make not only one slide file in one hour
-# 簡報也是有很多種
-- There're various kinds of slide
-# 有的字又小又多\\搞到你完全不想看
-- Some has a lot of small text,\\ which makes you insane
-# 有的根本是在念稿\\棒讀到讓你想睡覺
-- Some people just like oral reading,\\ which makes you sleepy
-# 重點是\\當有各種簡報讓你選擇時
-- (Too lazy to translate...)
-# 高橋，\\我選擇你的簡報
-- +Takahashi, I like you+
-# 高橋流簡報
-- Takahashi Method
-# 讚！
-- Awesome!
-# 所以
-- So
-# takahashi.js
-- +Everybody loves JS+
-# 用 Markdown\\以**最高速率**做簡報
-- Making slides with superb high efficiency \\(in Markdown syntax)
-# （呃，應該說是 Markdown 的子集）
-- (More preciously, a subset of Markdown)
-# 以**純 JS **實現
-- Implement with **Vanilla JS**
-# **不需要**任何 \\ JS Framework
-- Without any JS framework
-# **不用**編譯\\即時輸出
-- No compile, export real-time
-# **不**綁任何編輯器
-- No require any editor
-# **不**綁任何平台
-- No require any platform
-# **不**傷身體
-- Harmless to body
-# **不**含類固醇
-- Not contains steroid
-# 只要瀏覽器
-- All you needed is a (moderm) web browser
-# 讚！
-- Awesome!
-# 可以用\\**全螢幕圖片**
-- **Fullscreen image** is ok
-# ![](https://farm5.staticflickr.com/4070/4318432006_8353d986ab_b.jpg)
-
-# 也可以有**文字**跟**圖片**
-- ...Or image with titles
-![](https://farm7.staticflickr.com/6202/6049737840_e366c03b4f_b.jpg)
-
-# 或者插入 code
-- Code block is also acceptable
-# 用最有震撼力的方式\\展示你的 code
-- Show your code in the most shocking way
-```lisp
-(defun hello-world ()
-  (interactive)
-  (message "高橋流好棒棒"))
+# bringing light\\into **Docker**files
+# base **image**
+```Dockerfile
+FROM alpine
 ```
-# ...也適合拿來酸\\你討厭的程式語言
-- ...also suitable for blame a terrible language you hate
-```js
-var shit = this;
+```Dockerfile
+FROM alpine:latest
 ```
-# 讚！
-- Awesome
-# 哪裡取得
-- Where to get
-# GitHub
-# kuanyui/takahashi.js
-# 謝謝大家
-- Thank you
+```Dockerfile
+FROM alpine:3.7
+```
+```Dockerfile
+FROM alpine@sha256:7b848083...
+```
+```Dockerfile
+docker inspect \
+  --format='{{.RepoDigests}}' \
+  alpine:3.7
+```
+# apt-get
+```Dockerfile
+RUN apt-get update
+RUN apt-get upgrade
+```
+```Dockerfile
+RUN apt-get update \
+ && apt-get upgrade
+```
+```Dockerfile
+RUN apt-get update \
+ && apt-get install -y curl git
+```
+```Dockerfile
+RUN apt-get update \
+ && apt-get install --no-install-recommends -y \
+    curl \
+    git
+```
+```Dockerfile
+RUN apt-get update \
+ && apt-get install --no-install-recommends -y \
+    curl \
+    git \
+ && rm -rf /var/lib/apt/lists/*
+```
+```Bash
+RUN apt-get update \
+ && apt-get install --no-install-recommends -y \
+    curl=7.52.1-5+deb9u4 \
+    git=1:2.11.0-3+deb9u2 \
+ && rm -rf /var/lib/apt/lists/*
+```
+```Dockerfile
+RUN apt-get update \
+ && apt-get install --no-install-recommends -y \
+    curl=7.52.* \
+    git=1:2.11.* \
+ && rm -rf /var/lib/apt/lists/*
+```
+# ADD
+```Dockerfile
+ADD http://vlasto.com/big.tar.xz /cool/
+```
+```Dockerfile
+ADD big.tar.xz /cool/
+```
+```Dockerfile
+ADD http://vlasto.com/big.tar.xz /cool/
+RUN tar -xJf /cool/big.tar.xz -C /cool
+RUN rm -rf /cool/big.tar.xz
+```
+```Dockerfile
+RUN mkdir -p /cool \
+ && curl -SL http://vlasto.com/big.tar.xz \
+ |  tar -xJC /cool
+```
+# enough
+# ha**do**lint
+# **shell**check
+```Dockerfile
+FROM debian
+
+RUN apt-get update \
+ && apt-get upgrade
+```
+```Bash
+Dockerfile:1 DL3006 Always tag the version of an image explicitly.
+Dockerfile:3 DL3005 Do not use apt-get upgrade or dist-upgrade.
+Dockerfile:3 DL3009 Delete the apt-get lists after installing something
+```
+- TTY
+```JSON
+[
+  {
+    "line": 1,
+    "code": "DL3006",
+    "message": "Always tag the version of an image explicitly.",
+    "column": 1,
+    "file": "Dockerfile",
+    "level": "warning"
+  },
+  {
+    "line": 3,
+    "code": "DL3005",
+    "message": "Do not use apt-get upgrade or dist-upgrade.",
+    "column": 1,
+    "file": "Dockerfile",
+    "level": "error"
+  },
+  {
+    "line": 3,
+    "code": "DL3009",
+    "message": "Delete the apt-get lists after installing something",
+    "column": 1,
+    "file": "Dockerfile",
+    "level": "info"
+  }
+]
+```
+- JSON
+```XML
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;checkstyle version="4.3"&gt;
+  &lt;file name="Dockerfile"&gt;
+    &lt;error line="1" column="1" severity="warning" message="Always tag the version of an image explicitly." source="DL3006"/&gt;
+    &lt;error line="3" column="1" severity="error" message="Do not use apt-get upgrade or dist-upgrade." source="DL3005"/&gt;
+    &lt;error line="3" column="1" severity="info" message="Delete the apt-get lists after installing something" source="DL3009"/&gt;
+  &lt;/file&gt;
+&lt;/checkstyle&gt;
+```
+- XML - checkstyle
+# CI
+# static binary*
+# linux\\darwin(osx)\\windows
+# docker image
+# Atom\\Sublime Text 3\\(Neo)Vim
+# ![](https://user-images.githubusercontent.com/18702153/33764234-7abc1f24-dc0b-11e7-96b6-4f08207b6950.png)
+# github**.**com**/**hadolint**/**hadolint
