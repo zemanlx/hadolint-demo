@@ -274,8 +274,8 @@ onload = function() {
         var style = $ele.style;
         var top;
         var left;
-        var size = ((getSlideHeight() / getHtmlStringMaxLineLength($ele.innerHTML)) * 1.5);
-        style.display = "table";
+        var size = ((getSlideHeight() / getHtmlStringMaxLineLength($ele.innerHTML)) * 1);
+        //style.display = "table";
         style.position = "absolute";
         style.margin = "0 auto"
         style.top = "20%";
@@ -345,10 +345,10 @@ onload = function() {
         var codeblocks = document.getElementsByTagName("pre");
         for (var i=0; i<codeblocks.length; i++) {
             var block = codeblocks[i];
-            var size = ((getSlideHeight() / getTextMaxLineLength(block.textContent)) * 1.8);
+            var size = ((getSlideHeight() / getTextMaxLineLength(block.textContent)) * 1.9);
             block.style.fontSize = size + "px";
             block.style.position = 'absolute';
-            block.style.width = getSlideWidth() + "px"
+            block.style.width = getSlideWidth() + "px";
             block.style.top = "0px";
             block.style.margin = "10px 0px";
             hljs.highlightBlock(block);
