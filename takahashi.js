@@ -350,6 +350,7 @@ onload = function() {
             block.style.position = 'absolute';
             block.style.width = getSlideWidth() + "px"
             block.style.top = "0px";
+            block.style.margin = "10px 0px";
             hljs.highlightBlock(block);
         }
 
