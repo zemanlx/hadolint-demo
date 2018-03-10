@@ -248,7 +248,7 @@ onload = function() {
     function fitSlide($slide){
         var style = $slide.style;
         var min = getSlideHeight();
-        var width = min * 4/3 + "px";
+        var width = getSlideWidth() + "px";
         var height = min + "px";
         style.height = height;
         style.width = width;
