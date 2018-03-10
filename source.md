@@ -86,7 +86,7 @@ RUN apt-get update \
 ```Bash
 Dockerfile:1 DL3006 Always tag the version of an image explicitly.
 Dockerfile:3 DL3005 Do not use apt-get upgrade or dist-upgrade.
-Dockerfile:3 DL3009 Delete the apt-get lists after installing something
+Dockerfile:3 DL3009 Delete the apt-get lists after installing something.
 ```
 - TTY
 ```JSON
@@ -110,7 +110,7 @@ Dockerfile:3 DL3009 Delete the apt-get lists after installing something
   {
     "line": 3,
     "code": "DL3009",
-    "message": "Delete the apt-get lists after installing something",
+    "message": "Delete the apt-get lists after installing something.",
     "column": 1,
     "file": "Dockerfile",
     "level": "info"
@@ -124,7 +124,7 @@ Dockerfile:3 DL3009 Delete the apt-get lists after installing something
   &lt;file name="Dockerfile"&gt;
     &lt;error line="1" column="1" severity="warning" message="Always tag the version of an image explicitly." source="DL3006"/&gt;
     &lt;error line="3" column="1" severity="error" message="Do not use apt-get upgrade or dist-upgrade." source="DL3005"/&gt;
-    &lt;error line="3" column="1" severity="info" message="Delete the apt-get lists after installing something" source="DL3009"/&gt;
+    &lt;error line="3" column="1" severity="info" message="Delete the apt-get lists after installing something." source="DL3009"/&gt;
   &lt;/file&gt;
 &lt;/checkstyle&gt;
 ```
