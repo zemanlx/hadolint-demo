@@ -1,21 +1,27 @@
 # bringing light\\into **Docker**files
 # base **image**
 ```Dockerfile
-FROM alpine
+FROM debian
 ```
 ```Dockerfile
-FROM alpine:latest
+FROM debian:latest
 ```
 ```Dockerfile
-FROM alpine:3.7
+FROM debian:9
 ```
 ```Dockerfile
-FROM alpine@sha256:7b848083...
+FROM debian@sha256:f7ca2200...
+```
+```Bash
+docker pull debian:9
+  9: Pulling from library/debian
+  Digest: sha256:f7ca2200...
+  Status: Image is up to date for debian:9
 ```
 ```Dockerfile
 docker inspect \
   --format='{{.RepoDigests}}' \
-  alpine:3.7
+  debian:9
 ```
 # apt-get
 ```Dockerfile
@@ -43,7 +49,7 @@ RUN apt-get update \
     git \
  && rm -rf /var/lib/apt/lists/*
 ```
-```Bash
+```Dockerfile
 RUN apt-get update \
  && apt-get install --no-install-recommends -y \
     curl=7.52.1-5+deb9u4 \
@@ -56,23 +62,6 @@ RUN apt-get update \
     curl=7.52.* \
     git=1:2.11.* \
  && rm -rf /var/lib/apt/lists/*
-```
-# ADD
-```Dockerfile
-ADD http://vlasto.com/big.tar.xz /cool/
-```
-```Dockerfile
-ADD big.tar.xz /cool/
-```
-```Dockerfile
-ADD http://vlasto.com/big.tar.xz /cool/
-RUN tar -xJf /cool/big.tar.xz -C /cool
-RUN rm -rf /cool/big.tar.xz
-```
-```Dockerfile
-RUN mkdir -p /cool \
- && curl -SL http://vlasto.com/big.tar.xz \
- |  tar -xJC /cool
 ```
 # enough
 # ha**do**lint
@@ -134,5 +123,4 @@ Dockerfile:3 DL3009 Delete the apt-get lists after installing something
 # linux\\darwin(osx)\\windows
 # docker image
 # Atom\\Sublime Text 3\\(Neo)Vim
-# ![](https://user-images.githubusercontent.com/18702153/33764234-7abc1f24-dc0b-11e7-96b6-4f08207b6950.png)
 # github**.**com**/**hadolint**/**hadolint
