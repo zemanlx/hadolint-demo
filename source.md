@@ -25,14 +25,6 @@ docker inspect \
 ```
 # apt-get
 ```Dockerfile
-RUN apt-get update
-RUN apt-get upgrade
-```
-```Dockerfile
-RUN apt-get update \
- && apt-get upgrade
-```
-```Dockerfile
 RUN apt-get update \
  && apt-get install -y curl git
 ```
